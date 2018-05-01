@@ -1,5 +1,5 @@
 
-const notes = [{}, {
+const notes = [{ //this whole code will not work if you have an empty array at the begining
     title: 'My next trip',
     body: 'I would like to go to Spain'
 }, {
@@ -22,7 +22,18 @@ const renderNotes = function (notes, filters) {
   const filteredNotes = notes.filter(function (note) {
     return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
   })
-  console.log(filteredNotes)
+
+  //clear the filter before add the new note from the code bellow
+  document.querySelector('#notes').innerHTML = ''
+
+  //===================================
+  //****console.log(filteredNotes) //delete this line after get the code running propery
+  //section 7 lecture 55
+  filteredNotes.forEach(function (note) {
+    const noteEl = document.createElement('p')
+    noteEl.textContent = note.title
+    document.querySelector('#notes').appendChild(noteEl)
+  })
 }
 
 renderNotes(notes, filters)
